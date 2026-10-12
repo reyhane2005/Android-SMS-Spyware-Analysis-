@@ -1,6 +1,4 @@
 
-```
-markdown
 # Elgfus – Comprehensive Android SMS Spyware Analysis
 
 **Malware Family:** Provisional IRATA-style / Realrat cluster (MEDIUM confidence)  
