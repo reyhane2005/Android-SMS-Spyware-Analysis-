@@ -218,57 +218,190 @@ rule Android_Elgfus_SMS_Spyware {
         uint32(0) == 0x0A786564 and $pkg and 4 of ($s*)
 }
 
-11. MITRE ATT&CK Mobile Mapping
-Technique ID
-Name
-Confidence
-T1636.004
-SMS Messages
-Confirmed
-T1636.003
-Contact List
-Confirmed
-T1582
-SMS Control
-Confirmed
-T1418
-Software Discovery
-High
-T1426
-System Information Discovery
-Confirmed
-T1541
-Foreground Persistence
-Confirmed
-T1628.001
-Hide Artifacts
-Confirmed
-T1437.001
-Web Protocols
-Confirmed
-T1646
-Exfiltration Over C2 Channel
-Confirmed
-T1616
-Call Control
-Confirmed
-T1533
-Data from Local System
-High
-12. Indicators of Compromise (IOCs)
-Hashes
-SHA-256: dba10d0b3d89f977a84fa21033d65a3a989c89dc30da5be197b47e4f8f7cbbb6
-MD5: c45d843f107394fb943285c4c7c6b323
-SHA-1: e6bfc489b8a34c346e6a73b0ee4b0fea1f23ed14
-Network
-Domain: arvvvanepoohhh.site
-Paths:
-/FPkXgpj6pA/Received.php
-/FPkXgpj6pA/file.php
-/upload_gallery.php
-Package
-com.elgfus.app
-13. Conclusion
+| Gallery Upload    | https://arvvvanepoohhh.site/upload_gallery.php    | Chunked photo ZIP                |
+| Firebase Project  | fir-f9c5f                                        | Command delivery                 |
+| Firebase Topic    | FPkXgpj6pA                                       | Operator commands                |
+
+Operator can override the C2 host at runtime via Base64-encoded domain.txt.
+
+---
+
+## 5. Targeted Iranian Banks (Hardcoded)
+
+com.bki.mobilebanking.android
+com.isc.bminew
+ir.bmi.bam.nativeweb
+com.refahbank.dpi.android
+com.isc.bsinew
+ir.tejaratbank.tata.mobile.android.tejarat
+com.pmb.mobile
+com.dotin.wepod
+---
+
+## 6. Targeted Cryptocurrency Exchanges & Wallets
+
+market.nobitex
+co.okex.app
+com.iranicard.app
+io.bitpin.app
+land.tether.tetherland
+com.arzypto.my
+com.arzinja.app
+com.exnovin
+com.bitex.pooleno
+com.tabdeal
+co.app.xpay
+ir.wallex.app
+com.ompfinex.app
+ir.myter.bit24
+com.bitbarg.app
+com.excoino.excoino
+com.exir.mobile
+ir.bitmax.twa
+com.tickpaymobileapp.user
+com.coininno.android
+kifpool.me.v2
+com.nipoto.app
+com.kcex
+com.planet.toobit
+com.coinex.trade.play
+net.arzplus.twa
+com.ramzinex.ramzinex
+com.arzjoo
+com.hamtapay.exchange
+com.raastin.light
+com.arzpaya.arzpaya
+com.wallet.crypto.trustapp
+org.toshi
+app.phantom
+exodusmovement.exodus
+com.debank.rabbymobile
+io.safepal.wallet
+com.ton_keeper
+---
+
+## 7. Remote Commands (Complete List)
+
+### Financial Commands
+- balance / getallbalance / getallbalanc_two
+- searchCard
+- all_bank_sms
+- hamrahbank / hamrahbankall
+- exchange / exchangeall
+
+### Data Collection
+- all_contacts
+- all_sms / all_sms_recived / all_sms_sent / last_sms
+- get_gallery / get_gallery_v2
+- get_screenshot
+- applist
+- userphone / userphoneall
+- searchSMS / lastsearchSMS / allSearch
+
+### Remote Control & Evasion
+- divert → USSD *21*number#
+- ussdreq
+- hidden / visible / hide_all / hidden_delayed
+- changetogoogle / changetogoogleall
+- TEL_HIDE_SUM / CHEROME_HIDE_SUM / VISIBLE_HIDE_SUM
+- silent / silent_all / Vibrate / Normal
+- offline_mode_on / offline_mode_off
+- ratdomain
+- updateofflinekey / updateofflinekeyforuser
+- send_sms / send_sms_all / smcontact / smcontactall
+- add_contact
+- online_device / status / checker / refresh_token
+
+---
+
+## 8. Persistence Mechanisms
+
+- Foreground service sysc with FOREGROUND_SERVICE_SPECIAL_USE
+- Partial WakeLock + KeepAlive
+- Dynamic registration of BOOT_COMPLETED and package-replaced receivers
+- Task removal recovery
+- Launcher component disabling / aliasing as Google or Chrome
+
+---
+
+## 9. Anti-Analysis / Evasion
+
+- Strong anti-emulator checks (exits on goldfish/ranchu/qemu, specific carriers, x86 ABI)
+- Manipulated ZIP compression metadata
+- Malformed manifest attributes
+- Base64 encoding of C2 host
+- Icon hiding and disguise
+
+---
+
+## 10. YARA Rule
+
+rule Android_Elgfus_SMS_Spyware {
+    meta:
+        description = "Elgfus / IRATA-style Android SMS Spyware"
+        author = "reyhane2005"
+        date = "2026-10"
+        hash = "dba10d0b3d89f977a84fa21033d65a3a989c89dc30da5be197b47e4f8f7cbbb6"
+    strings:
+        $pkg = "Lcom/elgfus/app/" ascii
+        $s1 = "TEL_HIDE_SUM" ascii
+        $s2 = "get_gallery_v2" ascii
+        $s3 = "updateofflinekeyforuser" ascii
+        $s4 = "offline_key.txt" ascii
+        $s5 = "arvvvanepoohhh" ascii
+        $s6 = "hamrahbank" ascii
+    condition:
+        uint32(0) == 0x0A786564 and $pkg and 4 of ($s*)
+}
+---
+
+## 11. MITRE ATT&CK Mobile Mapping
+
+| Technique ID     | Name                          | Confidence |
+|------------------|-------------------------------|------------|
+| T1636.004        | SMS Messages                  | Confirmed  |
+| T1636.003        | Contact List                  | Confirmed  |
+| T1582            | SMS Control                   | Confirmed  |
+| T1418            | Software Discovery            | High       |
+| T1426            | System Information Discovery  | Confirmed  |
+| T1541            | Foreground Persistence        | Confirmed  |
+| T1628.001        | Hide Artifacts                | Confirmed  |
+| T1437.001        | Web Protocols                 | Confirmed  |
+| T1646            | Exfiltration Over C2 Channel  | Confirmed  |
+| T1616            | Call Control                  | Confirmed  |
+| T1533            | Data from Local System        | High       |
+
+---
+
+## 12. Indicators of Compromise (IOCs)
+
+### Hashes
+- SHA-256: dba10d0b3d89f977a84fa21033d65a3a989c89dc30da5be197b47e4f8f7cbbb6
+- MD5: c45d843f107394fb943285c4c7c6b323
+- SHA-1: e6bfc489b8a34c346e6a73b0ee4b0fea1f23ed14
+
+### Network
+- Domain: arvvvanepoohhh.site
+- Paths:
+  - /FPkXgpj6pA/Received.php
+  - /FPkXgpj6pA/file.php
+  - /upload_gallery.php
+
+### Package
+- com.elgfus.app
+
+---
+
+## 13. Conclusion
+
 Elgfus is a practical and effective Iranian-focused SMS spyware. While it lacks advanced Accessibility overlays, its combination of OTP theft, bank balance extraction, photo collection, call forwarding, and remote control makes it a significant threat to mobile banking users.
+
 The primary infection vector appears to be social-engineering sideloading under the “AI Gallery” lure.
+
+---
+
 Disclaimer: This analysis is for educational and defensive research purposes only.
+`
+
+---
+
