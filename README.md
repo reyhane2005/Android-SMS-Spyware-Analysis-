@@ -1,4 +1,6 @@
 
+
+```
 # Elgfus – Comprehensive Android SMS Spyware Analysis
 
 **Malware Family:** Provisional IRATA-style / Realrat cluster (MEDIUM confidence)  
@@ -277,3 +279,4 @@ The primary infection vector appears to be social-engineering sideloading under 
 
 **Disclaimer:** This analysis is for educational and defensive research purposes only.
 ```
+
