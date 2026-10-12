@@ -1,6 +1,3 @@
-
-
-`
 # Elgfus – Comprehensive Android SMS Spyware Analysis
 
 **Malware Family:** Provisional IRATA-style / Realrat cluster (MEDIUM confidence)  
@@ -53,7 +50,6 @@ No Accessibility Service, banking overlays, root exploit, ransomware, live camer
 ## 3. Complete Permission List
 
 ### High-Risk / Dangerous Permissions
-```
 android.permission.READ_SMS
 android.permission.RECEIVE_SMS
 android.permission.SEND_SMS
@@ -75,7 +71,6 @@ android.permission.POST_NOTIFICATIONS
 android.permission.VIBRATE
 android.permission.USE_BIOMETRIC
 android.permission.USE_FINGERPRINT
-```
 
 ---
 
@@ -95,8 +90,6 @@ Operator can override the C2 host at runtime via Base64-encoded `domain.txt`.
 ---
 
 ## 5. Targeted Iranian Banks (Hardcoded)
-
-```
 com.bki.mobilebanking.android
 com.isc.bminew
 ir.bmi.bam.nativeweb
@@ -105,13 +98,9 @@ com.isc.bsinew
 ir.tejaratbank.tata.mobile.android.tejarat
 com.pmb.mobile
 com.dotin.wepod
-```
-
 ---
 
 ## 6. Targeted Cryptocurrency Exchanges & Wallets
-
-```
 market.nobitex
 co.okex.app
 com.iranicard.app
@@ -150,7 +139,6 @@ exodusmovement.exodus
 com.debank.rabbymobile
 io.safepal.wallet
 com.ton_keeper
-```
 
 ---
 
@@ -228,9 +216,7 @@ rule Android_Elgfus_SMS_Spyware {
     condition:
         uint32(0) == 0x0A786564 and $pkg and 4 of ($s*)
 }
-```
 
----
 
 ## 11. MITRE ATT&CK Mobile Mapping
 
@@ -280,3 +266,4 @@ The primary infection vector appears to be social-engineering sideloading under 
 **Disclaimer:** This analysis is for educational and defensive research purposes only.
 ```
 
+---
