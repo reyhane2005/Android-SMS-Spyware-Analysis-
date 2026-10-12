@@ -234,7 +234,7 @@ rule Android_Elgfus_SMS_Spyware {
 | T1616            | Call Control                  | Confirmed  |
 | T1533            | Data from Local System        | High       |
 
----
+
 
 ## 12. Indicators of Compromise (IOCs)
 
@@ -253,7 +253,7 @@ rule Android_Elgfus_SMS_Spyware {
 ### Package
 - `com.elgfus.app`
 
----
+
 
 ## 13. Conclusion
 
@@ -261,9 +261,9 @@ Elgfus is a practical and effective Iranian-focused SMS spyware. While it lacks 
 
 The primary infection vector appears to be social-engineering sideloading under the “AI Gallery” lure.
 
----
+
 
 **Disclaimer:** This analysis is for educational and defensive research purposes only.
 ```
 
----
+
