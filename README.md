@@ -195,6 +195,7 @@ com.ton_keeper
 - Icon hiding and disguise
 
 ---
+---
 
 ## 10. YARA Rule
 
@@ -217,53 +218,57 @@ rule Android_Elgfus_SMS_Spyware {
         uint32(0) == 0x0A786564 and $pkg and 4 of ($s*)
 }
 
-
-## 11. MITRE ATT&CK Mobile Mapping
-
-| Technique ID     | Name                          | Confidence |
-|------------------|-------------------------------|------------|
-| T1636.004        | SMS Messages                  | Confirmed  |
-| T1636.003        | Contact List                  | Confirmed  |
-| T1582            | SMS Control                   | Confirmed  |
-| T1418            | Software Discovery            | High       |
-| T1426            | System Information Discovery  | Confirmed  |
-| T1541            | Foreground Persistence        | Confirmed  |
-| T1628.001        | Hide Artifacts                | Confirmed  |
-| T1437.001        | Web Protocols                 | Confirmed  |
-| T1646            | Exfiltration Over C2 Channel  | Confirmed  |
-| T1616            | Call Control                  | Confirmed  |
-| T1533            | Data from Local System        | High       |
-
-
-
-## 12. Indicators of Compromise (IOCs)
-
-### Hashes
-- **SHA-256:** `dba10d0b3d89f977a84fa21033d65a3a989c89dc30da5be197b47e4f8f7cbbb6`
-- **MD5:** `c45d843f107394fb943285c4c7c6b323`
-- **SHA-1:** `e6bfc489b8a34c346e6a73b0ee4b0fea1f23ed14`
-
-### Network
-- Domain: `arvvvanepoohhh.site`
-- Paths:
-  - `/FPkXgpj6pA/Received.php`
-  - `/FPkXgpj6pA/file.php`
-  - `/upload_gallery.php`
-
-### Package
-- `com.elgfus.app`
-
-
-
-## 13. Conclusion
-
+11. MITRE ATT&CK Mobile Mapping
+Technique ID
+Name
+Confidence
+T1636.004
+SMS Messages
+Confirmed
+T1636.003
+Contact List
+Confirmed
+T1582
+SMS Control
+Confirmed
+T1418
+Software Discovery
+High
+T1426
+System Information Discovery
+Confirmed
+T1541
+Foreground Persistence
+Confirmed
+T1628.001
+Hide Artifacts
+Confirmed
+T1437.001
+Web Protocols
+Confirmed
+T1646
+Exfiltration Over C2 Channel
+Confirmed
+T1616
+Call Control
+Confirmed
+T1533
+Data from Local System
+High
+12. Indicators of Compromise (IOCs)
+Hashes
+SHA-256: dba10d0b3d89f977a84fa21033d65a3a989c89dc30da5be197b47e4f8f7cbbb6
+MD5: c45d843f107394fb943285c4c7c6b323
+SHA-1: e6bfc489b8a34c346e6a73b0ee4b0fea1f23ed14
+Network
+Domain: arvvvanepoohhh.site
+Paths:
+/FPkXgpj6pA/Received.php
+/FPkXgpj6pA/file.php
+/upload_gallery.php
+Package
+com.elgfus.app
+13. Conclusion
 Elgfus is a practical and effective Iranian-focused SMS spyware. While it lacks advanced Accessibility overlays, its combination of OTP theft, bank balance extraction, photo collection, call forwarding, and remote control makes it a significant threat to mobile banking users.
-
 The primary infection vector appears to be social-engineering sideloading under the “AI Gallery” lure.
-
-
-
-**Disclaimer:** This analysis is for educational and defensive research purposes only.
-```
-
-
+Disclaimer: This analysis is for educational and defensive research purposes only.
